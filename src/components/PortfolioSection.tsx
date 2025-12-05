@@ -84,6 +84,25 @@ interface PortfolioRowProps {
 }
 
 const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass = "animate-scroll-left", isVideo = false, useCloudinary = false }: PortfolioRowProps) => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Handle user interaction - pause auto-scroll
+  const handleUserInteraction = () => {
+    setIsPaused(true);
+
+    // Clear existing timeout
+    if (pauseTimeoutRef.current) {
+      clearTimeout(pauseTimeoutRef.current);
+    }
+
+    // Resume auto-scroll after 3 seconds of no interaction
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 3000);
+  };
+
   return (
     <div className="mb-10">
       <div className="flex items-center gap-3 mb-4 px-4">
@@ -93,10 +112,17 @@ const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass =
         </h3>
       </div>
 
-      {/* Scrollable container with custom scrollbar styling */}
-      <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40 px-4">
-        <div className="flex gap-4 pb-4">
-          {items.map((item, index) => (
+      {/* Scrollable container with auto-scroll and manual control */}
+      <div
+        ref={scrollRef}
+        className="overflow-x-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40"
+        onScroll={handleUserInteraction}
+        onMouseEnter={handleUserInteraction}
+        onTouchStart={handleUserInteraction}
+      >
+        <div className={`flex gap-4 pb-4 ${!isPaused ? animationClass : ''}`}>
+          {/* Duplicate items for infinite scroll effect */}
+          {[...items, ...items].map((item, index) => (
             <div
               key={index}
               className={`shrink-0 ${isVertical ? "w-32 md:w-40 aspect-[9/16]" : "w-40 md:w-52 aspect-square"
