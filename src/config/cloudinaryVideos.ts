@@ -8,31 +8,35 @@
 
 // ✅ REELS - Vertical videos for Instagram (recommended: 1080x1920)
 // These are your actual videos from Cloudinary collection (24 videos)
+// Priority videos shown first
 export const cloudinaryReels = [
+    // Priority videos (shown first)
+    'reel-12_y1bqeh',
     'platinum-events_izvx0y',
+    'reel-11_lqguzp',
+    'reel-13_ixnfpl',
+    'reel-7_fb76nl',
+    'reel-16_cpxmxs',
     'treat-studio-madam-ji_vj9rid',
+    'reel-17_h5okoo',
+    'reel-5_sxsetz',
+    'reel-25_qwxqhe',
+
+    // Remaining reels
     'reel-1_jhnxos',
     'reel-2_ewvhsd',
     'reel-3_oy56mf',
     'reel-4_botdsq',
-    'reel-5_sxsetz',
     'reel-6_yrga7b',
-    'reel-7_fb76nl',
     'reel-8_ortztv',
     'reel-9_kzdvfa',
     'reel-10_a7qbqm',
-    'reel-11_lqguzp',
-    'reel-12_y1bqeh',
-    'reel-13_ixnfpl',
-    'reel-16_cpxmxs',
-    'reel-17_h5okoo',
     'reel-18_qeansq',
     'reel-19_r7833f',
     'reel-20_yovr4h',
     'reel-21_bbxgv3',
     'reel-23_ty3soj',
     'reel-24_vtxx2c',
-    'reel-25_qwxqhe',
 ];
 
 // ✅ STORIES - Vertical videos for Instagram Stories (recommended: 1080x1920)
@@ -71,7 +75,7 @@ export const posterImages = [
 /**
  * 💡 SUMMARY:
  * -----------
- * ✅ 24 Reels from your Cloudinary collection
+ * ✅ 24 Reels from your Cloudinary collection (priority videos shown first)
  * ✅ 14 Motion Stories from your Cloudinary collection
  * ✅ 10 Poster images (local files)
  * 
