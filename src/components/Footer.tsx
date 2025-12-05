@@ -12,9 +12,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <span className="font-display text-xl font-bold text-foreground">
-              WE<span className="text-gradient">FORE</span>
-            </span>
+            <img src="/images/logo.png" alt="WeFore Logo" className="h-14 w-auto" />
           </div>
 
           <div className="flex items-center gap-4">
@@ -34,7 +32,7 @@ const Footer = () => {
 
           {/* Copyright */}
           <p className="text-muted-foreground text-sm">
-            © 2024 WeFore. All rights reserved.
+            © 2025 WeFore. All rights reserved.
           </p>
         </div>
       </div>
