@@ -1,11 +1,9 @@
-import { Instagram, Twitter, Linkedin, Youtube } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Youtube, href: "#", label: "YouTube" },
+    { icon: Instagram, href: "https://www.instagram.com/weforeofficial/", label: "Instagram" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/wefore-media/?viewAsMember=true", label: "LinkedIn" },
   ];
 
   return (
@@ -19,12 +17,13 @@ const Footer = () => {
             </span>
           </div>
 
-          {/* Social Links */}
           <div className="flex items-center gap-4">
             {socialLinks.map((social) => (
               <a
                 key={social.label}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label={social.label}
                 className="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-all duration-300"
               >
