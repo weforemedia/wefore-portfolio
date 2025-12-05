@@ -11,6 +11,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     businessType: "",
+    customBusinessType: "",
     phone: "",
     email: "",
   });
@@ -40,6 +41,11 @@ const ContactSection = () => {
     }
 
     try {
+      // Use custom business type if "Other" is selected
+      const finalBusinessType = formData.businessType === "Other"
+        ? formData.customBusinessType
+        : formData.businessType;
+
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
@@ -48,6 +54,7 @@ const ContactSection = () => {
         },
         body: JSON.stringify({
           ...formData,
+          businessType: finalBusinessType, // Send the resolved business type
           timestamp: new Date().toISOString(),
         }),
       });
@@ -60,6 +67,7 @@ const ContactSection = () => {
       setFormData({
         name: "",
         businessType: "",
+        customBusinessType: "",
         phone: "",
         email: "",
       });
@@ -158,6 +166,19 @@ const ContactSection = () => {
                 </option>
               ))}
             </select>
+
+            {formData.businessType === "Other" && (
+              <Input
+                id="customBusinessType"
+                name="customBusinessType"
+                type="text"
+                placeholder="Please specify your business type"
+                value={formData.customBusinessType || ""}
+                onChange={handleChange}
+                required
+                className="mt-2 bg-secondary border-border focus:border-primary animate-fade-in-up"
+              />
+            )}
           </div>
 
           <Button
