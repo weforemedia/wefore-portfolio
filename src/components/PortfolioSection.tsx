@@ -93,9 +93,10 @@ const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass =
         </h3>
       </div>
 
-      <div className="overflow-hidden">
-        <div className={`flex gap-4 ${animationClass}`}>
-          {[...items, ...items].map((item, index) => (
+      {/* Scrollable container with custom scrollbar styling */}
+      <div className="overflow-x-auto scrollbar-thin scrollbar-thumb-primary/20 scrollbar-track-transparent hover:scrollbar-thumb-primary/40 px-4">
+        <div className="flex gap-4 pb-4">
+          {items.map((item, index) => (
             <div
               key={index}
               className={`shrink-0 ${isVertical ? "w-32 md:w-40 aspect-[9/16]" : "w-40 md:w-52 aspect-square"

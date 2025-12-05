@@ -173,10 +173,22 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--muted));
+  background: hsl(var(--primary) / 0.2);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--muted-foreground));
+  background: hsl(var(--primary) / 0.4);
 }
+
+/* Smooth horizontal scrolling for portfolio sections */
+.overflow-x-auto {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.2) transparent;
+}
+
+.overflow-x-auto:hover {
+  scrollbar-color: hsl(var(--primary) / 0.4) transparent;
+}
+
