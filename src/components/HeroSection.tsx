@@ -9,7 +9,7 @@ const HeroSection = () => {
     >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-background to-background" />
-      
+
       {/* Animated background orbs */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse delay-500" />
@@ -17,10 +17,9 @@ const HeroSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           {/* Main heading */}
-          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 animate-fade-in-up">
-            <span className="text-foreground">WE</span>
-            <span className="text-gradient">FORE</span>
-          </h1>
+          <div className="flex justify-center mb-6 animate-fade-in-up">
+            <img src="/images/logo.png" alt="WeFore Logo" className="h-24 md:h-32 lg:h-40 w-auto" />
+          </div>
 
           {/* Tagline */}
           <p className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-4 animate-fade-in-up delay-100">
@@ -29,7 +28,7 @@ const HeroSection = () => {
 
           {/* Description */}
           <p className="text-sm sm:text-base text-muted-foreground/80 max-w-2xl mx-auto mb-10 animate-fade-in-up delay-200">
-            We craft scroll-stopping content, viral reels, and creative campaigns 
+            We craft scroll-stopping content, viral reels, and creative campaigns
             that transform your brand's social presence into measurable results.
           </p>
 

@@ -32,7 +32,11 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button variant="nav" size="sm">
+            <Button
+              variant="nav"
+              size="sm"
+              onClick={() => document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" })}
+            >
               View Work
             </Button>
           </div>
@@ -62,7 +66,15 @@ const Navbar = () => {
                 {link.name}
               </a>
             ))}
-            <Button variant="nav" size="sm" className="w-fit">
+            <Button
+              variant="nav"
+              size="sm"
+              className="w-fit"
+              onClick={() => {
+                setIsOpen(false);
+                document.getElementById("portfolio")?.scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               View Work
             </Button>
           </div>
