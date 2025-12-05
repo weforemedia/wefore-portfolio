@@ -6,6 +6,8 @@ import {
   DialogClose,
 } from "@/components/ui/dialog";
 import { useState, useRef } from "react";
+import CloudinaryVideo from "@/components/CloudinaryVideo";
+import { cloudinaryReels, cloudinaryStories, posterImages } from "@/config/cloudinaryVideos";
 
 const reels = [
   "/videos/reels/sizzling-brownie.mp4",
@@ -78,9 +80,10 @@ interface PortfolioRowProps {
   isVertical?: boolean;
   animationClass?: string;
   isVideo?: boolean;
+  useCloudinary?: boolean; // New prop to indicate if items are Cloudinary public IDs
 }
 
-const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass = "animate-scroll-left", isVideo = false }: PortfolioRowProps) => {
+const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass = "animate-scroll-left", isVideo = false, useCloudinary = false }: PortfolioRowProps) => {
   return (
     <div className="mb-10">
       <div className="flex items-center gap-3 mb-4 px-4">
@@ -103,17 +106,30 @@ const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass =
                   <DialogTrigger asChild>
                     <div className="w-full h-full relative">
                       {isVideo ? (
-                        <video
-                          src={item}
-                          className="w-full h-full object-cover"
-                          muted
-                          loop
-                          onMouseEnter={(e) => e.currentTarget.play()}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.pause();
-                            e.currentTarget.currentTime = 0;
-                          }}
-                        />
+                        useCloudinary ? (
+                          // Cloudinary Video with optimization
+                          <CloudinaryVideo
+                            publicId={item}
+                            className="w-full h-full object-cover"
+                            playOnHover={true}
+                            showThumbnail={true}
+                            width={isVertical ? 400 : 600}
+                            height={isVertical ? 711 : 600}
+                          />
+                        ) : (
+                          // Local Video
+                          <video
+                            src={item}
+                            className="w-full h-full object-cover"
+                            muted
+                            loop
+                            onMouseEnter={(e) => e.currentTarget.play()}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.pause();
+                              e.currentTarget.currentTime = 0;
+                            }}
+                          />
+                        )
                       ) : (
                         <img src={item} alt={`Portfolio item ${index}`} className="w-full h-full object-cover cursor-pointer hover:scale-110 transition-transform duration-500" />
                       )}
@@ -127,12 +143,25 @@ const PortfolioRow = ({ title, icon, items, isVertical = false, animationClass =
                   <DialogContent className="max-w-4xl w-full p-0 overflow-hidden bg-transparent border-none shadow-none">
                     <div className="relative w-full h-full flex items-center justify-center">
                       {isVideo ? (
-                        <video
-                          src={item}
-                          className="max-w-full max-h-[90vh] rounded-md"
-                          controls
-                          autoPlay
-                        />
+                        useCloudinary ? (
+                          // Cloudinary Video in Dialog
+                          <CloudinaryVideo
+                            publicId={item}
+                            className="max-w-full max-h-[90vh] rounded-md"
+                            controls={true}
+                            autoPlay={true}
+                            playOnHover={false}
+                            showThumbnail={false}
+                          />
+                        ) : (
+                          // Local Video in Dialog
+                          <video
+                            src={item}
+                            className="max-w-full max-h-[90vh] rounded-md"
+                            controls
+                            autoPlay
+                          />
+                        )
                       ) : (
                         <img src={item} alt={`Portfolio item ${index}`} className="max-w-full max-h-[90vh] object-contain rounded-md" />
                       )}
@@ -170,24 +199,26 @@ const PortfolioSection = () => {
           <PortfolioRow
             title="Reels"
             icon={<Play size={24} />}
-            items={reels}
+            items={cloudinaryReels}
             isVertical={true}
             isVideo={true}
+            useCloudinary={true}
           />
 
           <PortfolioRow
             title="Creative Posters"
             icon={<Image size={24} />}
-            items={posters}
+            items={posterImages}
             isVertical={false}
           />
 
           <PortfolioRow
             title="Motion Stories"
             icon={<Film size={24} />}
-            items={stories}
+            items={cloudinaryStories}
             isVertical={true}
             isVideo={true}
+            useCloudinary={true}
           />
         </div>
       </div>
